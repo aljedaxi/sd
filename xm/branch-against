@@ -1,0 +1,5 @@
+#!/bin/sh
+
+git checkout ${1:-develop}
+git pull
+sd xm brancher <&0

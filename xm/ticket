@@ -1,0 +1,1 @@
+git rev-parse --symbolic --abbrev-ref HEAD | egrep -o 'XM-\d+'
