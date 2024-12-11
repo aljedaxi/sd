@@ -1,0 +1,3 @@
+pushd ~/xmentium/xm/tests
+yes | sudo make dbrefresh
+popd
