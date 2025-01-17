@@ -1,0 +1,31 @@
+#!/usr/bin/env deno run -A
+const millis = n => new Promise (res => setTimeout (res, n))
+const waitForFToBeTrue = n => async f => {
+	let ok = await f ().catch (e => false)
+	let idx = 0
+	while (!ok) {
+		try {
+			if(await f (idx++)) break
+		} catch {}
+		await millis (n)
+	}
+}
+
+const square = n => n ** 2
+const cache = new Set ()
+for (let idx = 0; idx < 100; idx++) {
+	cache.add(square(idx))
+}
+const inSquares = n => cache.has(n)
+export const awaitPort = url => waitForFToBeTrue (5e3) (
+	async (idx) => {
+		if (inSquares(idx)) {
+			console.log (`fetching ${url}`)
+		}
+		const {ok} = await fetch (url)
+		return ok
+	}
+)
+
+await awaitPort(Deno.args.at(-1))
+console.log (`fetched ${Deno.args.at(-1)}`)
