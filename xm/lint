@@ -1,4 +1,4 @@
-pnpm eslint --fix `git diff --name-only develop | grep -E '\.ts$|\.tsx$' | tr '\n' ' '`
+pnpm dlx eslint --fix `git diff --name-only develop | grep -E '\.ts$|\.tsx$' | tr '\n' ' '`
 prettier -w `git diff --name-only develop | grep -E '\.ts$|\.tsx$' | tr '\n' ' '`
 make generate
 pushd cicd/actions
