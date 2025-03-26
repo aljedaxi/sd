@@ -11,4 +11,4 @@ branch=`curl -s -u $USERNAME:$TOKEN $OPEN_ISSUE_URL \
 	| sed 's/ /-/g' \
 	| sed 's/:/-/g'`
 echo $branch
-git checkout -b $branch
+git switch -c $branch
