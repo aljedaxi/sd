@@ -1,1 +1,1 @@
-nix-shell -p nodejs_20 pnpm_8
+nix-shell -p nodejs_22 pnpm_10
