@@ -2,4 +2,5 @@
 pushd ~/xmentium/xm > /dev/null
 ticket=`git rev-parse --abbrev-ref HEAD | cut -d '-' -f 1,2`
 popd > /dev/null
+echo "you should use `sd xm ticket` instead"
 echo $ticket
