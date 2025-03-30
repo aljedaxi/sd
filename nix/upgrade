@@ -1,3 +1,1 @@
-pushd /etc/nixos
-sudo nixos-rebuild switch
-popd
+sudo nixos-rebuild switch --flake /home/daxi/.config/nixos
