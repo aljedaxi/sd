@@ -1,0 +1,7 @@
+XMDIR=~/xmentium/xm
+sudo gsed -i "/demo\.xmentium\.com/s/etoi.xmentium.com//" /etc/hosts
+pushd $XMDIR
+git restore cicd/development/docker-compose.yml
+cd cicd/development/
+sudo make restart
+popd

@@ -1,0 +1,3 @@
+#!/bin/sh
+
+git checkout ${1:-develop} && git pull && git checkout -b test-fixes-`date -I`

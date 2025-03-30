@@ -1,0 +1,3 @@
+#!/usr/bin/env deno
+import title from "https://esm.sh/title"
+console.log(title(Deno.args.join(' ')))

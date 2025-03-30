@@ -2,7 +2,7 @@
 #! nix shell nixpkgs#bash nixpkgs#csvkit --command bash
 
 source ~/sd/xm/.env
-branch=`curl -s -u $USERNAME:$TOKEN "https://xmentium.atlassian.net/sr/jira.issueviews:searchrequest-csv-all-fields/10004/SearchRequest-10004.csv?atl_token=9a607669-555b-4671-b5c7-452edf2c56f8_1c921f9068183a5758305ce82125f02c567ad272_lin&tempMax=1000" \
+branch=`curl -s -u $USERNAME:$TOKEN $OPEN_ISSUE_URL \
 	| csvcut -c 2,1 \
 	| csvformat -T \
 	| tail -n +2 \
@@ -11,4 +11,4 @@ branch=`curl -s -u $USERNAME:$TOKEN "https://xmentium.atlassian.net/sr/jira.issu
 	| sed 's/ /-/g' \
 	| sed 's/:/-/g'`
 echo $branch
-git checkout -b $branch
+git switch -c $branch

@@ -1,0 +1,5 @@
+#!/usr/bin/env nix
+#! nix shell nixpkgs#mongosh --command bash
+
+source ~/sd/xm/.env
+mongosh $DB_NAME --quiet --json=relaxed --eval "JSON.stringify(db.roles.find({}).toArray())"
