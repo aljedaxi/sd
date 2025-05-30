@@ -2,4 +2,4 @@
 #! nix shell nixpkgs#mongosh --command bash
 
 source ~/sd/xm/.env
-mongosh $DB_NAME --quiet --json=relaxed --eval "JSON.stringify(db.roles.find({}).toArray())"
+mongosh $DB_NAME --eval 'EJSON.stringify(db.roles.find({}).toArray())' | jq -c '.[]'

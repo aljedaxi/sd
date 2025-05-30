@@ -1,0 +1,5 @@
+#!/usr/bin/env nix
+#! nix shell nixpkgs#mongosh --command bash
+
+source ~/sd/xm/.env
+sd xm all-roles | sd xm mermaidify-roles.mjs | npx -p @mermaid-js/mermaid-cli mmdc -o output.svg

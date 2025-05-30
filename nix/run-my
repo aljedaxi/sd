@@ -1,0 +1,1 @@
+nix run github:aljedaxi/$1 ${@:2}
