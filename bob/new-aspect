@@ -1,0 +1,3 @@
+cafe="${1:-`ls resources/static | fzf`}"
+aspect=`sd bob aspects | fzf`
+sd doom run resources/static/${cafe}/${aspect}.md
