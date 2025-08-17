@@ -1,0 +1,5 @@
+sd nix run-my rdfa2ttl http://localhost:3000/taxonomy \
+   | npx @frogcat/ttl2jsonld \
+   | jq -c '.["@graph"][] | select(.["@type"]=="https://schema.org/reviewAspect")' \
+   | jq -r '.["@id"]' \
+   | sed "s,http://localhost:3000/taxonomy/#,,"
