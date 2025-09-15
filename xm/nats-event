@@ -1,0 +1,2 @@
+#!/usr/bin/env zsh
+nix shell nixpkgs#natscli --command nats pub $1

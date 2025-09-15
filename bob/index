@@ -1,0 +1,3 @@
+sd nix run-my rdfa2ttl http://localhost:3000 \
+   | npx @frogcat/ttl2jsonld \
+   | jq -c '.["@graph"][]'
