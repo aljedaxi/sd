@@ -1,0 +1,1 @@
+sd nix run-my rdfa2ttl $1 | npx @frogcat/ttl2jsonld | jq '.["@graph"][]'
