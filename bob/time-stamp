@@ -1,2 +1,2 @@
 cafe="${1:-`ls resources/static | fzf`}"
-date -I > dateCreated
+date -I > resources/static/${cafe}/dateCreated.md
