@@ -1,6 +1,10 @@
-pnpm dlx eslint --fix `git diff --name-only develop | grep -E '\.ts$|\.tsx$' | tr '\n' ' '`
-pnpm prettier -w `git diff --name-only develop | grep -E '\.ts$|\.tsx$' | tr '\n' ' '`
+#!/usr/bin/env bash
+
+pushd ~/xm
+changedFiles=`git diff --name-only develop | grep -E '\.ts$|\.tsx$' | tr '\n' '\0' | xargs -0 ls -1df 2>/dev/null`
 make generate
-pushd cicd/actions
-./pr.sh -lpr
+pnpm dlx eslint --fix $changedFiles
+pnpm prettier -w $changedFiles
+pnpm tsc --noEmit -p tsconfig.strict.json
+echo "Done!" | noti
 popd
