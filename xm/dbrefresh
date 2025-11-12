@@ -1,3 +1,4 @@
 pushd ~/xm/cicd/development
 sudo make dbrefresh
+./scripts/pgsnap backup default
 popd

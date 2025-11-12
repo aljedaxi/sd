@@ -1,0 +1,3 @@
+pushd ~/xm/cicd/development/scripts
+./pgsnap restore default
+popd
