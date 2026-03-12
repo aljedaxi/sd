@@ -1,0 +1,2 @@
+echo "" >> ~/zettel/pages/albums\ to\ listen\ to.md
+echo "- `pbpaste`" >> ~/zettel/pages/albums\ to\ listen\ to.md
