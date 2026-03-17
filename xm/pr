@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+open "https://github.com/xMentium/xm/compare/`git branch --show-current`?expand=1"

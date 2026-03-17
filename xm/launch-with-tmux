@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+pushd ~/xm
+pnpm i
+tmux new 'make watch-server-web' \; \
+     split-window -h 'make watch-server-worker' \; \
+     split-window 'make watch-app-proxy'
