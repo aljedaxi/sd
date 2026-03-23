@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+sudo ifconfig en0 down && sudo ifconfig en0 up
