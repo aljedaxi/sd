@@ -1,0 +1,112 @@
+#! /usr/bin/env node
+import readline from 'node:readline/promises'
+import {argv, stdin} from 'node:process'
+
+const fileName = argv.at(-1);
+
+stdin.setEncoding('utf-8');
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+    terminal: false
+})
+class CallExpression {
+    constructor({type, callee, arguments: args}) {
+        if (type !== 'CallExpression' || !callee || !args) {
+            throw new Error()
+        }
+        this.callee = callee
+        this.args = args
+    }
+    get calleeName() {
+        const {object, property, type, name} = this.callee
+        if (name) {
+            return [undefined, name]
+        }
+        if (!object.name || !property.name) {
+            if (object?.object?.name) {
+                return [object.object.name, object.property.name, property.name]
+            }
+            return []
+        }
+        return [object.name, property.name]
+    }
+}
+class ExpressionStatement {
+    constructor({type, loc, expression}) {
+        if (type !== 'ExpressionStatement' || !expression) {
+            throw new Error()
+        }
+        this.loc = loc.start.line
+        this.expression = expression
+    }
+    get isCall() {
+        return this.expression.type === 'CallExpression'
+    }
+    get call() {
+        return new CallExpression(this.expression)
+    }
+}
+class Block {
+    constructor({body }) {
+        this.expressions = Iterator.from(body)
+                                   .filter(e => e.type === 'ExpressionStatement')
+                                   .map(e => new ExpressionStatement(e))
+    }
+    get calls() {
+        return this.expressions.filter(e => e.isCall).map(e => e.call)
+    }
+}
+class File {
+    constructor({type, program}) {
+        if (type !== 'File' || !program) {
+            throw new Error()
+        }
+        this.block = new Block(program)
+    }
+    get expressions() {
+        return this.block.expressions
+    }
+}
+class Describe {
+    constructor(expression ) {
+        const [_, bodyObj] = expression.call.args
+        this.expression = expression
+        this.fileName = fileName
+        this.loc = expression.loc
+        this.description = this.callName(expression.call)
+        if (!this.description || bodyObj?.type !== 'ArrowFunctionExpression') {
+            throw new Error()
+        }
+        this.body = new Block(bodyObj.body)
+    }
+    callName = c => c.args[0]?.value
+    get testNames() {
+        return this.tests.map(this.callName)
+    }
+    get tests() {
+        return this.body.calls.filter(c => c.calleeName[1] === 'test')
+    }
+    toJSON() {
+        const {description, fileName, loc, testNames} = this
+        return {description, fileName, line: loc, testNames: testNames.toArray()}
+    }
+    toMarkdown = () => `## ${this.description} --- ${this.fileName}:${this.loc}\n${this.testNames.map(n => `- ${n}`).toArray().join('\n')}`
+}
+const namer = l => {
+    const f = new File(l)
+    return f.expressions
+            .filter(({call: {calleeName: [_obj, prop]}}) => prop === 'describe') // TODO handle test on its own
+            .map(e => new Describe(e).toMarkdown())
+            .toArray()
+            .join('\n\n')
+}
+for await (const line of rl) {
+    const json = JSON.parse(line)
+    try {
+        console.log(namer(json, ))
+        console.log('')
+    } catch (e){
+        console.error(fileName, e)
+    }
+}

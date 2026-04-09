@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+tsc && git status | grep spec.js | grep tests | while read -r line; do sd xm source2ast "$line"; done > ~/report.md
+pushd ~
+pandoc report.md -o report.pdf && open report.pdf
+popd

@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-open "https://github.com/xMentium/xm/compare/`git branch --show-current`?expand=1"
+gh pr create --title "`git branch --show-current`" --base develop --body ""
+open "https://github.com/xMentium/xm/pulls/aljedaxi"

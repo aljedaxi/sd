@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+docker run --rm -v $(pwd):/workspace jsir:latest jsir_gen --input_file=/workspace/$1 --passes=source2ast | jq -c | sd xm ast2idk-yet $1
