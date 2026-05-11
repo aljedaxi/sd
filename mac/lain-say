@@ -1,3 +1,4 @@
+#!/usr/bin/env sh
 outfile=$1
 toSay=$2
 say -r 125 -v whisper -o $outfile.aiff $toSay

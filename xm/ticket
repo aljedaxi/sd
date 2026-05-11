@@ -1,3 +1,4 @@
 #!/usr/bin/env sh
 ticket=`git rev-parse --symbolic --abbrev-ref HEAD | egrep -o 'XM-\d+'`
 open "https://xmentium.atlassian.net/browse/${ticket}"
+echo $ticket
