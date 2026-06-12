@@ -1,0 +1,10 @@
+#!/usr/bin/env janet
+# this is for stuff that's been declipped, coming from a kindle's clippings
+
+#TODO test this lol
+(defn main [s]
+ (let [{:content content :meta meta} (json/decode s)
+       {:page page} meta]
+   (print (string/format "- > %s\n%s" content page))))
+
+(->> stdin file/lines (each main))

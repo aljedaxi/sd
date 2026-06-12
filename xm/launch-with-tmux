@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 pushd ~/xm
 pnpm i
+make -C cicd/development pull start
 make -C xm/deployments/server dev-config
 make -C xm/deployments/xbridge dev-config
 tmux new 'make watch-server-web' \; \

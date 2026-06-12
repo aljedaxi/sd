@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+for file in $@
+do
+    /Applications/calibre.app/Contents/MacOS/ebook-convert $file `basename -s .pdf $file`.epub
+done

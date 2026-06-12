@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+ticket=`sd xm ticket`
+
+sd xm move-to-status Testing
+acli jira workitem edit --key "${ticket}" --assignee "mkravchenko@xmentium.com"

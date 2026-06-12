@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+opencode run "make $1 pass by altering the test file. do no alter the code"

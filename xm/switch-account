@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+id=`sd xm psql "select name,id from account" | fzf | jq -r .id`
+user_id=`sd xm psql "select * from users where email='jacob@xmentium.com'" | jq -r .id`
+account_user_id=`sd xm psql "select * from account_user where account_id='${id}' and user_id='${user_id}'" | jq -r .id`
+sd xm psql "update users set current_account_user_id='${current_account_user_id}' where id='${user_id}'"
+

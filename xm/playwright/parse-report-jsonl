@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+#parse the top level report file and find the test failure messages
+
+jq -c < $1 | grep onTestEnd | grep failed | jq '.params.result.errors | []'

@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+opencode run "please look at the lastest commit and all our agentic coding guidelines. please rewrite the changes to bring them in line with our agentic coding guidelines, and to make it look like it was written by ai. do not commit anything. do not worry about `make generate` or `pnpm format`. simply do the task; do not wait for further instruction"

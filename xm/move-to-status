@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+ticket=`sd xm ticket`
+
+acli jira workitem transition --key "${ticket}" --status "$1"

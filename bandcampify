@@ -1,0 +1,6 @@
+#!/usr/bin/env janet
+
+#TODO you're gonna have to like, encodeURIComponent
+#https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent
+(defn to-search [s] (string/format "https://bandcamp.com/search?q=%s" s))
+(->> stdin file/lines (map to-search) (map print))
