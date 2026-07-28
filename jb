@@ -1,0 +1,17 @@
+#!/usr/bin/env janet
+#pass bashy args and get json out
+
+(import spork/json)
+
+(defn le-do-the-thing [args]
+  (tabseq
+   [arg :in args
+    :let [[raw-k v] (string/split "=" arg)
+          k (string/replace "--" "" raw-k)
+          sliced (string/slice k -3)
+          sliced-off (string/slice k 0 -3)
+          [final-k final-v] (if (= sliced "[]") [sliced-off [v]] [k v])]]
+   final-k final-v))
+
+(defn main [program & args]
+  (->> args le-do-the-thing json/encode print))
