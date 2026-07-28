@@ -1,0 +1,2 @@
+echo "" >> ~/zettel/pages/lecture\ series.md
+echo "- `pbpaste`" >> ~/zettel/pages/lecture\ series.md

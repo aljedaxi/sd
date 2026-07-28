@@ -1,6 +1,13 @@
 #!/usr/bin/env janet
+#search bandcamp for a string
 
-#TODO you're gonna have to like, encodeURIComponent
-#https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent
-(defn to-search [s] (string/format "https://bandcamp.com/search?q=%s" s))
+(import uri)
+
+(defn to-search [s]
+  (->> s
+       string
+       string/trim
+       uri/escape
+       (string/format "https://tent.bloat.cat/search.php?query=%s")))
+
 (->> stdin file/lines (map to-search) (map print))

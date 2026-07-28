@@ -1,0 +1,17 @@
+#!/usr/bin/env janet
+#postgres output to json output
+
+(import spork/json)
+
+(defn main [lines]
+  (let [keys @[]
+       vals-out @[]]
+    (each line lines
+      (if (not (buffer? line)) (break))
+      (let [vals (->> line (string/split "|") (map string/trim))]
+        (cond (empty? keys) (each val vals (array/push keys val))
+              (= "" (first vals)) nil
+              (not= (length vals) (length keys)) nil
+              (print (json/encode (zipcoll keys vals))))))))
+
+(->> stdin file/lines main)

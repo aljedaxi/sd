@@ -1,0 +1,21 @@
+#!/usr/bin/env janet
+#turn a bandcamp url into a tent url
+
+(import uri)
+
+(defn tentify [uri-obj]
+  (let [{:host host :path path} uri-obj
+        [_ type name] (string/split "/" path)
+        [artist] (string/split "." host)]
+    (string/format "https://tent.bloat.cat/release.php?artist=%s&type=%s&name=%s" artist type name)))
+
+(defn cleanup [s]
+ (let [cleaned (string/replace "- " "" s)]
+  (if (string/has-prefix? "[" cleaned)
+      (string/slice cleaned 1 (string/find "]" cleaned))
+      cleaned)))
+
+(defn to-tent [s]
+  (->> s string string/trim cleanup uri/parse tentify))
+
+(->> stdin file/lines (map to-tent) (map print))

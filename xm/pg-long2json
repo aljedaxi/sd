@@ -1,0 +1,15 @@
+#!/usr/bin/env janet
+#postgres output to json output
+
+(import spork/json)
+
+(defn get-kv [line]
+  (->> line (string/split "|") (map string/trim)))
+
+(defn main [lines]
+  (tabseq [line :in lines
+           :when (buffer? line)
+           :let [[k v] (get-kv line)]]
+          k v))
+
+(->> stdin file/lines main json/encode print)
