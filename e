@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/env perl
 #stolen from https://github.com/kilobyte/e/blob/master/e cuz i don't know if this is in homebrew or whatever
 
 my @files;
