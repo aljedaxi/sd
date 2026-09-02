@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 echo "{ pkgs ? import <nixpkgs> { } }:" > shell.nix
 echo "pkgs.mkShell {" >> shell.nix
 echo 'name = "`pwd | cut -d '/' -f 3-`";' >> shell.nix
