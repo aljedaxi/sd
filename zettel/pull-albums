@@ -4,3 +4,8 @@
 
 number=`tail ~/zettel/pages/2025.md | grep bandcamp | wc -l`
 tail ~/zettel/pages/2025.md | grep bandcamp | sd tentify | xargs open
+# if [[ $number -eq 10 ]];
+#     then
+#         sed -i -n -e :a -e '1,10!{P;N;D;};N;ba' ~/zettel/pages/2025.md 
+#         echo "10 more" | noti
+# fi
