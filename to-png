@@ -1,0 +1,19 @@
+#!/usr/bin/env janet
+#turn many whatevers into pngs
+
+(use spork/sh-dsl)
+(use spork/argparse)
+(import spork/path)
+
+(def argparse-params
+  ["mass converter with the swag of image magick"
+  :default {:kind :accumulate}])
+
+(let [{:default default} (argparse ;argparse-params)]
+  (unless default (os/exit 1))
+  (loop [file :in default
+         :let [ext (path/ext file)
+               basename (path/basename file)
+               name (string/replace ext "" basename)
+               png-name (string name ".avif")]]
+    ($ magick ,file ,png-name)))

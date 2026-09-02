@@ -1,0 +1,15 @@
+#!/usr/bin/env janet
+#search tent.bloat.cat for something like `${artist}: ${album name}`
+
+(import uri)
+
+(defn tentify [s]
+  (string/format "https://tent.bloat.cat/search.php?query=%s&type=a" s))
+
+(defn de-bullet [s]
+  (string/replace "- " "" s))
+
+(defn to-tent [s]
+  (->> s string string/trim de-bullet uri/escape tentify))
+
+(->> stdin file/lines (map to-tent) (map print))

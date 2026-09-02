@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# pull albums from zettel/pages/2025.md and search tent.bloat.cat
+
+
+# number=`tail ~/zettel/pages/2025.md | wc -l`
+tail ~/zettel/pages/2025.md | sd tent-search | xargs open
+sed -i -n -e :a -e '1,10!{P;N;D;};N;ba' ~/zettel/pages/2025.md 
+echo "10 more" | noti
