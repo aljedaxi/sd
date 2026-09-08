@@ -1,5 +1,5 @@
 #!/usr/bin/env janet
-#search tent.bloat.cat for something like `${artist}: ${album name}`
+#search tent.bloat.cat for something like {artist}: {album name}
 
 (import uri)
 
