@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # pull albums from zettel/pages/2025.md
 
-
 number=`tail ~/zettel/pages/2025.md | grep bandcamp | wc -l`
 tail ~/zettel/pages/2025.md | grep bandcamp | sd tentify | xargs open
 # if [[ $number -eq 10 ]];

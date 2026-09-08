@@ -1,2 +1,5 @@
+#!/usr/bin/env bash
+# paste into the lecture file
+
 echo "" >> ~/zettel/pages/lecture\ series.md
 echo "- `pbpaste`" >> ~/zettel/pages/lecture\ series.md

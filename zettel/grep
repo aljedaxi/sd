@@ -1,1 +1,4 @@
+#!/usr/bin/env bash
+# just grep for a file name
+
 find prog/zettle | grep -i $1

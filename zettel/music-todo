@@ -1,2 +1,5 @@
+#!/usr/bin/env bash
+# commit all changes and push
+
 echo "" >> ~/zettel/pages/albums\ to\ listen\ to.md
 echo "- `pbpaste`" >> ~/zettel/pages/albums\ to\ listen\ to.md
