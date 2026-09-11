@@ -1,8 +1,0 @@
-#!/usr/bin/env nix
-#! nix shell nixpkgs#curlMinimal --command bash
-# use the logseq api lol
-
-curl -s -X POST http://127.0.0.1:12315/api \
--H "Authorization: Bearer swag" \
--H "Content-Type: application/json" \
--d `sd jb method=$1 args[]=$2`

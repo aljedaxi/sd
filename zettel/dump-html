@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+#grab dc.type=text files and convert them to html
+
+sd zettel api | while read x; 
+do
+  justName=`basename "${x%.*}" | sed "s/ /-/g"`
+  mkdir -p ~/prog/dasein-output/${justName}
+  echo $justName
+  ~/prog/dasein-janet/build/de-logseqify-markdown "$HOME/zettel/pages/$x.md" > $HOME/prog/dasein-output/${justName}/index.html
+done
