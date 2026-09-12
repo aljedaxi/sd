@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-opencode run "~/pr-workflow open a pr for this branch, based on a diff against origin/develop. do not write the summary to a markdown file, pass it directly to the gh command."
+opencode run "~/pr-workflow open a pr for this branch, based on a diff against origin/develop. do not write the summary to a markdown file, pass it directly to the gh command. ${1}"
