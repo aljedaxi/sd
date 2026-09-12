@@ -1,0 +1,34 @@
+#!/usr/bin/env janet
+#unspool all the roles and stuff
+
+(import spork/json)
+
+(defn le-grouper [$]
+  (tabseq [l :in $
+           :let [o (json/decode l)
+                 k (get o "name")]]
+         k o))
+
+(defn get-grantables [$]
+  (seq [[k v] :pairs $ :when (get v "grantable")] k))
+
+(defn unspool-roles [name $]
+  (if-let [role (get $ name)
+           role-string (-?> role (get "role_ids") (string/slice 1) (string/slice 0 -2))
+           roles (string/split "," role-string)]
+    (do [;roles ;(unspool-roles roles $)])
+    []))
+
+(defn csv-mode [tab]
+  (print "role,perms")
+  (loop [[k v] :pairs tab
+        :when v]
+    (printf "%s,%s" k (if (or (string? v) (nil? v)) v (string/join v " " )))))
+
+(defn main
+  [& args]
+  (defn unspooler [roles]
+    (let [grantables (get-grantables roles)]
+      (tabseq [role :in grantables]
+              role (unspool-roles role roles))))
+  (->> stdin file/lines le-grouper unspooler csv-mode))
