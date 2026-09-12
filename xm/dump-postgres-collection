@@ -1,4 +1,4 @@
 #!/usr/bin/env nix
 #! nix shell nixpkgs#csvkit --command bash
 
-sd xm psql "SELECT * FROM ${1}"
+sd xm psql "SELECT * FROM ${1}" | sd xm pg2json
