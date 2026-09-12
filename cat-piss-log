@@ -1,2 +1,5 @@
+#!/usr/bin/env bash
+# log when my cat has pissed in the tub
+
 echo "" >> ~/zettel/pages/weslie\ log.md
 echo "- `date -Iminutes` discovered cat piss in tub" >> ~/zettel/pages/weslie\ log.md
