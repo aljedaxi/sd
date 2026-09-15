@@ -19,6 +19,7 @@ do
   mkdir -p ~/prog/dasein-output/${justName}
   echo $justName
   echo $preamble > $HOME/prog/dasein-output/${justName}/index.html
+  echo "<title>${justName}</title>" >> $HOME/prog/dasein-output/${justName}/index.html
   de-logseqify-markdown "$HOME/zettel/pages/$x.md" >> $HOME/prog/dasein-output/${justName}/index.html
   echo $postamble >> $HOME/prog/dasein-output/${justName}/index.html
 done
