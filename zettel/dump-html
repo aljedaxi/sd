@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/usr/bin/env nix
+#! nix shell github:aljedaxi/de-logseqify-markdown --command bash
 #grab dc.type=text files and convert them to html
 
 sd zettel api | while read x; 
@@ -6,5 +7,5 @@ do
   justName=`basename "${x%.*}" | sed "s/ /-/g"`
   mkdir -p ~/prog/dasein-output/${justName}
   echo $justName
-  ~/prog/dasein-janet/build/de-logseqify-markdown "$HOME/zettel/pages/$x.md" > $HOME/prog/dasein-output/${justName}/index.html
+  de-logseqify-markdown "$HOME/zettel/pages/$x.md" > $HOME/prog/dasein-output/${justName}/index.html
 done
