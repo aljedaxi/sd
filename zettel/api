@@ -5,5 +5,5 @@
 curl -s -X POST http://127.0.0.1:12315/api \
 -H "Authorization: Bearer swag" \
 -H "Content-Type: application/json" \
--d '{"method": "logseq.db.q", "args": ["(page-property dc.type text)"]}' \
+-d '{"method": "logseq.db.q", "args": ["(page-property og.type article)"]}' \
    | jq -r '.[] | .name' 

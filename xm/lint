@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-pushd ~/xm
-changedFiles=`git diff --name-only origin/develop | grep -E '\.ts$|\.tsx$' | tr '\n' '\0' | xargs -0 ls -1df 2>/dev/null`
-make generate
-pnpm eslint --fix $changedFiles
-pnpm prettier -w $changedFiles
-echo "Done!" | noti
-popd

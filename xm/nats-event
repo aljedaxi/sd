@@ -1,2 +1,3 @@
 #!/usr/bin/env zsh
+# emit a nats event
 nix shell nixpkgs#natscli --command nats pub $1

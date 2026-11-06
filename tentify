@@ -9,13 +9,9 @@
         [artist] (string/split "." host)]
     (string/format "https://tent.bloat.cat/release.php?artist=%s&type=%s&name=%s" artist type name)))
 
-(defn cleanup [s]
- (let [cleaned (string/replace "- " "" s)]
-  (if (string/has-prefix? "[" cleaned)
-      (string/slice cleaned 1 (string/find "]" cleaned))
-      cleaned)))
-
 (defn to-tent [s]
-  (->> s string string/trim cleanup uri/parse tentify))
+  (->> s string string/trim uri/parse tentify))
 
-(->> stdin file/lines (map to-tent) (map print))
+(defn main
+  [& args]
+  (->> stdin file/lines (map to-tent) (map print)))

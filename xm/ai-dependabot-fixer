@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 #fix all the dependabot issues
 sd xm dependabots && \
-    opencode run "~/dependabot-audit-resolution create a branch and pr for each vulnerability. instead of waiting for me to respond to any questions you may have, continue with the pr and leave the concerns in the pr description. ${1}"
+    opencode run "/dependabot-audit-resolution create a worktree and pr for each vulnerability. instead of waiting for me to respond to any questions you may have, continue with the pr and leave the concerns in the pr description. ${1}"
+

@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
+# get the ast and run it through ast-2-idk-yet
 docker run --rm -v $(pwd):/workspace jsir:latest jsir_gen --input_file=/workspace/$1 --passes=source2ast | jq -c | sd xm ast2idk-yet $1

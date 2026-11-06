@@ -2,4 +2,4 @@
 #! nix shell nixpkgs#curlMinimal --command bash
 # copy the entire text of moby dick to your clipboard
 
-curl "https://www.gutenberg.org/files/2701/2701-h/2701-h.htm" | pbpaste
+curl "https://www.gutenberg.org/files/2701/2701-h/2701-h.htm" | pbcopy

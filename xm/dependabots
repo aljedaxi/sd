@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
+# grab open npm dependabot alerts
 
 gh api "repos/xmentium/xm/dependabot/alerts?state=open&per_page=100" --paginate \
     | jq -c '.[] | {url, pkg: .dependency.package.name, ecosystem: .dependency.package.ecosystem, manifest: .dependency.manifest_path, severity: .security_advisory.severity, ghsa: .security_advisory.ghsa_id}' \
-    | grep npm
+    | grep npm 
